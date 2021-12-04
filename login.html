@@ -1,0 +1,72 @@
+<script type="text/javascript" src="https://staff.washington.edu/tabrooks/343INFO/JSMotionTween/Tween.js"></script>
+
+<style type="text/css">
+  * { font-family: sans-serif; }
+</style>
+
+<script type="text/javascript">
+  function moveObj() {
+    var obj = document.getElementById("obj");
+    var obj1 = document.getElementById("obj1");
+    var tween = new Tween(obj.style, 'left', Tween.regularEaseOut, 300, 0, 0.2, 'px');
+    var tween1 = new Tween(obj1.style, 'left', Tween.regularEaseOut, 300, 0, 0.2, 'px');
+    tween.start();
+    tween1.start();
+  }
+</script>
+
+<div id="obj" style="position: relative; left: 0px;">
+  <center>
+    <h1>
+      Login to PanGit Dictionary
+    </h1>
+  </center>
+</div>
+
+<script type="text/javascript">
+  var params = window.location.search;
+  var params_without_questionmark = new URLSearchParams(params);
+  var state = params_without_questionmark.get('state');
+  var user = params_without_questionmark.get('user');
+  
+  function checkUserName() {
+    var userNameInput = document.getElementById("userNameInputBox").value;
+    
+    // user definition template:  || userNameInput == "[user name]"
+    if (userNameInput == "Pan_") {
+      window.location.assign("/login?state=password&user=" + userNameInput);
+    }
+    else {
+      alert("User was not found.");
+    }
+    
+  }
+  
+  function checkPassword() {
+    var passwordInput = document.getElementById("passwordInputBox").value;
+    
+    if (user == "Pan_") {
+      if (passwordInput == "BADBruhLol!1!") {
+        alert("TK");
+      }
+      else {
+        alert("Password is incorrect.");
+      }
+    }
+    
+  }
+  
+  if (state == "username") {
+    document.write("<center><div id='obj1' style='position: relative; left: 0px;'>User name:<br><input id='userNameInputBox'><br><br><input type='button' value='Next' onclick='checkUserName();'></div></center>");
+  }
+  else {
+    if (state == "password") {
+      document.write("<center><div id='obj1' style='position: relative; left: 0px;'>Password:<br><input type='password' id='passwordInputBox'><br><br><input type='button' value='Login' onclick='checkPassword();'></div></center>");
+    }
+    else {
+      window.location.assign("/");
+    }
+  }
+</script>
+
+<body onLoad="moveObj();">
