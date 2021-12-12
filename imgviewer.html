@@ -1,0 +1,11 @@
+<head>
+  <base href="http://pangitdictionary.tk">
+</head>
+
+<script type="text/javascript">
+  var params = window.location.search;
+  var params_without_questionmark = new URLSearchParams(params);
+  var imgLink = params_without_questionmark.get('img');
+  
+  document.write("<center><img src='" + imgLink + "'></center>");
+</script>
